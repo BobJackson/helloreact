@@ -3,7 +3,7 @@ import StarRating from "./StarRating";
 
 function App() {
   return (
-      <StarRating/>
+      <StarRating style={{backgroundColor: "lightblue"}}/>
   );
 }
 
