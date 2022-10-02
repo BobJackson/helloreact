@@ -14,7 +14,7 @@ export default function StarRating({length: totalStars = 5}) {
             {createArray(totalStars).map((n, i) => <Star key={i} selected={selectedStars > i}/>)}
             <p>
                 {selectedStars} of {totalStars} stars
-            </p>¬
+            </p>
         </>
     );
 }
