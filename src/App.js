@@ -1,11 +1,16 @@
 import './App.css';
-import StarRating from "./StarRating";
+import colorData from "./color-data.json";
+import {useState} from "react";
+import ColorList from "./ColorList";
 
 function App() {
-  return (
-      <StarRating style={{backgroundColor: "lightblue"}}
-                  onDoubleClick={e => alert("double click")}/>
-  );
+    const [colors, setColors] = useState(colorData);
+    return (
+        <ColorList colors={colors} onRemoveColor={id => {
+            const newColors = colors.filter(color => color.id !== id);
+            setColors(newColors);
+        }}/>
+    );
 }
 
 export default App;
