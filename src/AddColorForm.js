@@ -1,18 +1,40 @@
 import React from "react";
 import {useInput} from "./hooks";
+import {css} from "@emotion/css";
+import {useColors} from "./ColorProvider";
 
-export default function AddColorForm({onNewColor = f => f}) {
+export default function AddColorForm() {
     const [titleProps, resetTitle] = useInput("");
     const [colorProps, resetColor] = useInput("#000000");
+    const {addColor} = useColors();
 
     const submit = e => {
         e.preventDefault();
-        onNewColor(titleProps.value, colorProps.value);
+        addColor(titleProps.value, colorProps.value);
         resetTitle();
         resetColor();
     };
     return (
-        <form onSubmit={submit}>
+        <form
+            className={css`
+              display: flex;
+              justify-content: space-around;
+              margin: 0.25em;
+
+              button {
+                margin: 0.25em;
+              }
+
+              input {
+                margin: 0.25em;
+
+                &:first-child {
+                  flex: 1;
+                }
+              }
+            `}
+            onSubmit={submit}
+        >
             <input
                 {...titleProps}
                 type="text"
@@ -25,5 +47,5 @@ export default function AddColorForm({onNewColor = f => f}) {
                 required/>
             <button>ADD</button>
         </form>
-    )
+    );
 }
